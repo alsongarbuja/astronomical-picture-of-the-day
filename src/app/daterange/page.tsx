@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 
 const DateRangeImages = () => {
   const [dateRange, setDateRange] = useState<DateRange>({
-    startDate: moment().subtract(3,"days").format("YYYY-MM-DD"),
+    startDate: moment().subtract(3, "days").format("YYYY-MM-DD"),
     endDate: moment().format("YYYY-MM-DD"),
   });
   const [pictures, setPictures] = useState<Picture[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDateRange({...dateRange, [e.target.name]: moment(e.target.value).format("YYYY-MM-DD")});
+    setDateRange({ ...dateRange, [e.target.name]: moment(e.target.value).format("YYYY-MM-DD") });
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,36 +24,36 @@ const DateRangeImages = () => {
   const getPictures = async () => {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${dateRange.startDate}&end_date=${dateRange.endDate}`);
     const data = await response.json();
-    
+
     setPictures(data);
     setIsLoading(false);
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     setIsLoading(true);
     getPictures();
   }, [])
 
-  
+
   return (
-    <main className="flex flex-col gap-4 items-center justify-center min-h-screen p-6 md:p-12">
+    <main className="max-w-7xl w-[90%] mx-auto flex flex-col gap-4 min-h-screen p-6 md:p-12">
       <h1 className="text-2xl font-bold">Date Range Images</h1>
       <form className="flex gap-2 w-full" onSubmit={handleSubmit}>
-        <input 
+        <input
           type="date"
           name="startDate"
           value={dateRange.startDate}
           onChange={handleDateChange}
           max={moment().subtract(1, "day").format("YYYY-MM-DD")}
-          className='w-[50%] rounded border shadow text-black'
+          className='w-[50%] rounded border shadow text-black bg-gray-50 px-2'
         />
-        <input 
+        <input
           type="date"
           name="endDate"
           value={dateRange.endDate}
           onChange={handleDateChange}
           max={moment().format("YYYY-MM-DD")}
-          className='w-[50%] rounded border shadow text-black'
+          className='w-[50%] rounded border shadow text-black bg-gray-50 px-2'
         />
         <button type="submit" className="px-6 py-2 rounded-sm bg-nasa-red">Fly</button>
       </form>
