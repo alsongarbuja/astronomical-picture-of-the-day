@@ -13,6 +13,6 @@ body {
   /* background: linear-gradient(
     to right bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb))
   ); */
-  background: url('/images/space_star.jpg') no-repeat center fixed;
+  background: url('/images/space_star.webp') no-repeat center fixed;
   background-size: cover;
 }
