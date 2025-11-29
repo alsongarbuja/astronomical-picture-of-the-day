@@ -12,7 +12,7 @@ const SingleImageData = ({
 }: ISingleImageDataProps) => {
   return (
     <>
-      <div className="md:border-r-2 border-b-2 md:border-b-0  col-span-3 md:col-span-1">
+      <div className="">
         {picture?.media_type === "image" ? (
           <Link href={picture?.url}>
             <Image
@@ -25,7 +25,7 @@ const SingleImageData = ({
                   : picture?.thumbnail_url
               }
               alt={picture?.title}
-              className={`w-full`}
+              className={`w-full min-h-[300px] object-cover rounded-md`}
             />
           </Link>
         ) : (

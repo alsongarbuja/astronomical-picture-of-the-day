@@ -22,7 +22,7 @@ const RecentImage = ({ picture }: RecentImageProps) => {
                 : picture?.thumbnail_url
             }
             alt={picture?.title}
-            className="w-full h-full"
+            className="w-full h-[400px] object-cover"
           />
         </Link>
       ) : (
